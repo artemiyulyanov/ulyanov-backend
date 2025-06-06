@@ -22,7 +22,7 @@ class GetPortfolioItemsByScopeRoute : Route, KoinComponent {
         get(Paths.GET_PORTFOLIO_ITEMS_BY_SCOPE) {
             val scope = call.requiredScopeParameter
 
-            val items = portfolioItemService.getByScope(scope, requireDto = true).getOrThrow().requiredDtoList
+            val items = portfolioItemService.getByScope(scope, requireDto = true).getOrThrow().requiredDto
 
             call.respond(items)
         }
