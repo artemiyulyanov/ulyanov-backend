@@ -15,7 +15,7 @@ import org.lighthousegames.logging.logging
 interface PortfolioItemService {
     suspend fun getAll(requireDto: Boolean = false): ResultingEntityWithOptionalDtoList<PortfolioItemEntity, PortfolioItem>
     suspend fun getById(id: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
-    suspend fun getByScope(scope: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDtoList<PortfolioItemEntity, PortfolioItem>
+    suspend fun getByScope(scope: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
 
     suspend fun createPortfolioItem(item: PortfolioItemEntity, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
 
@@ -52,11 +52,11 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
             }
         }
 
-    override suspend fun getByScope(scope: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDtoList<PortfolioItemEntity, PortfolioItem> =
+    override suspend fun getByScope(scope: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem> =
         runCatching {
-            val items = portfolioItemRepository.findByScope(scope).getOrThrow()
+            val item = portfolioItemRepository.findByScope(scope).getOrThrow()
 
-            items to portfolioItemDtoConverter.convertToDtoListIf(items) {
+            item to portfolioItemDtoConverter.convertToDtoIf(item) {
                 requireDto
             }
         }

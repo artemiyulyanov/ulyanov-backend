@@ -17,7 +17,7 @@ import org.ktorm.support.postgresql.ilike
 interface PortfolioItemRepository : AbstractRepository<PortfolioItemEntity> {
     suspend fun findAll(): Result<List<PortfolioItemEntity>>
     suspend fun findById(id: Identifier): Result<PortfolioItemEntity>
-    suspend fun findByScope(scope: Identifier): Result<List<PortfolioItemEntity>>
+    suspend fun findByScope(scope: Identifier): Result<PortfolioItemEntity>
 
     suspend fun addPortfolioItem(item: PortfolioItemEntity): Result<PortfolioItemEntity>
 
@@ -40,11 +40,11 @@ class DefaultPortfolioItemRepository : PortfolioItemRepository, KoinComponent, D
             } ?: error("Portfolio item is not found")
         }
 
-    override suspend fun findByScope(scope: Identifier): Result<List<PortfolioItemEntity>> =
+    override suspend fun findByScope(scope: Identifier): Result<PortfolioItemEntity> =
         withIoCatching {
-            database.portfolioItems.filter {
-                it.scope ilike "%$scope%"
-            }.toList()
+            database.portfolioItems.find {
+                it.scope eq scope
+            } ?: error("Portfolio item is not found")
         }
 
     override suspend fun addPortfolioItem(item: PortfolioItemEntity): Result<PortfolioItemEntity> =

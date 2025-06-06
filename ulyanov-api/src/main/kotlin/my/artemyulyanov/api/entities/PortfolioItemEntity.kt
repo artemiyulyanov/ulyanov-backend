@@ -9,6 +9,7 @@ import java.time.Instant
 interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> {
     var id: Identifier
     var scope: Identifier
+    var title: String
     var description: String
     var text: String
     var startDate: Instant

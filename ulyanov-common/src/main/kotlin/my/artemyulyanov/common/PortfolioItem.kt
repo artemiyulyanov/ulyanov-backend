@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 interface AbstractPortfolioItem {
     val scope: Identifier
+    val title: String
     val description: String
     val text: String
 }
@@ -12,6 +13,7 @@ interface AbstractPortfolioItem {
 data class PortfolioItem(
     override val id: Identifier,
     override val scope: Identifier,
+    override val title: String,
     override val description: String,
     override val text: String,
     val startDate: Timestamp,
@@ -23,6 +25,7 @@ data class PortfolioItem(
 @Serializable
 data class PortfolioItemModification(
     override val scope: Identifier,
+    override val title: String,
     override val description: String,
     override val text: String,
     val startDate: Timestamp,
