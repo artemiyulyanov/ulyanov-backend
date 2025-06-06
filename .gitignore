@@ -44,5 +44,6 @@ bin/
 ### Mac OS ###
 .DS_Store
 /config/.env
-/ulyanov-api/src/main/resources/
 /ulyanov-common/src/main/resources/
+/ulyanov-api/src/main/resources/api.conf
+/ulyanov-api/src/main/resources/changelog.json

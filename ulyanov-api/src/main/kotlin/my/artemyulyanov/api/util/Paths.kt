@@ -12,4 +12,6 @@ object Paths {
 
     const val PUT_PORTFOLIO_ITEM = "/api/portfolio/{${ID_PARAMETER}}"
     const val DELETE_PORTFOLIO_ITEM = "/api/portfolio/{${ID_PARAMETER}}"
+
+    const val GET_API_DOCS = "/docs"
 }

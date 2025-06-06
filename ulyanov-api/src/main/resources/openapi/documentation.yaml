@@ -1,0 +1,277 @@
+openapi: "3.0.0"
+info:
+  title: "Ulyanov API"
+  description: "API documentation for Ulyanov Backend"
+  version: "1.0.0"
+  contact:
+    name: "Artemy Ulyanov"
+    email: "artemiyulyanov.career@gmail.com"
+servers:
+  - url: "https://artemyulyanov.com"
+    description: "Production"
+  - url: "http://localhost:9374"
+    description: "Development environment"
+tags:
+  - name: "portfolio_items"
+    description: "Endpoints to process the actions intended for portfolio items"
+#  - name: "users"
+#    description: "Endpoints to process the actions intended for users"
+paths:
+  /api/portfolio:
+    post:
+      tags:
+        - portfolio_items
+      summary: "Create a new portfolio item"
+      description: "Required role: `ADMINISTRATOR`"
+      operationId: "postPortfolioItem"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortfolioItemModification"
+        required: true
+      responses:
+        201:
+          description: "Item is created!"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioItem"
+        400:
+          description: "Incorrect request body"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        401:
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        403:
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      security:
+        - ulyanov_api_auth: [ ]
+    get:
+      tags:
+        - portfolio_items
+      summary: "Get all portfolio items"
+      description: "Required role: `NO AUTH`"
+      operationId: "getPortfolioItem"
+      responses:
+        200:
+          description: "Items are retrieved"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PortfolioItem"
+  /api/portfolio/{id}:
+    put:
+      tags:
+        - portfolio_items
+      summary: "Update a portfolio item"
+      description: "Required role: `ADMINISTRATOR`"
+      operationId: "putPortfolioItem"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortfolioItemModification"
+        required: true
+      responses:
+        200:
+          description: "Item is updated!"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioItem"
+        400:
+          description: "Incorrect request body"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        401:
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        403:
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        404:
+          description: "Item is not found!"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      security:
+        - ulyanov_api_auth: [ ]
+    delete:
+      tags:
+        - portfolio_items
+      summary: "Delete a portfolio item"
+      description: "Required role: `ADMINISTRATOR`"
+      operationId: "deletePortfolioItem"
+      responses:
+        200:
+          description: "Item is deleted!"
+        401:
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        403:
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        404:
+          description: "Item is not found!"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      security:
+        - ulyanov_api_auth: [ ]
+  /api/portfolio/id/{id}:
+    get:
+      tags:
+        - portfolio_items
+      summary: "Get a portfolio item by identifier"
+      description: "Required role: `NO AUTH`"
+      operationId: "getPortfolioItemById"
+      responses:
+        200:
+          description: "Item is retrieved"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PortfolioItem"
+        404:
+          description: "Item is not found"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ErrorResponse"
+  /api/portfolio/scope/{scope}:
+    get:
+      tags:
+        - portfolio_items
+      summary: "Get a portfolio item by scope"
+      description: "Required role: `NO AUTH`"
+      operationId: "getPortfolioItemByScope"
+      responses:
+        200:
+          description: "Items are retrieved"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PortfolioItem"
+components:
+  schemas:
+    PortfolioItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Identifier"
+          example: "000000000"
+        scope:
+          type: string
+          description: "Scope to what workplace/project this relates"
+          example: "My Last Workplace"
+        description:
+          type: string
+          description: "Short description of the experience"
+          example: "This project I managed during my last job at..."
+        text:
+          type: string
+          description: "Long definition of workplace/project"
+          example: "Cooperating with [company] gave me a lovely experience of..."
+        startDate:
+          type: string
+          format: date-time
+          description: "Timestamp of beginning"
+        endDate:
+          type: string
+          format: date-time
+          description: "Timestamp of ending"
+        createdAt:
+          type: string
+          format: date-time
+          description: "Timestamp of item creation"
+        updatedAt:
+          type: string
+          format: date-time
+          description: "Timestamp of last update"
+      required:
+        - id
+        - scope
+        - description
+        - text
+        - startDate
+        - endDate
+        - createdAt
+        - updatedAt
+    PortfolioItemModification:
+      type: object
+      properties:
+        scope:
+          type: string
+          description: "Scope to what workplace/project this relates"
+          example: "My Last Workplace"
+        description:
+          type: string
+          description: "Short description of the experience"
+          example: "This project I managed during my last job at..."
+        text:
+          type: string
+          description: "Long definition of workplace/project"
+          example: "Cooperating with [company] gave me a lovely experience of..."
+        startDate:
+          type: string
+          format: date-time
+          description: "Timestamp of beginning"
+        endDate:
+          type: string
+          format: date-time
+          description: "Timestamp of ending"
+      required:
+        - scope
+        - description
+        - text
+        - startDate
+        - endDate
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: "**Technical** description of occurred error"
+      required:
+        - message
+  securitySchemes:
+    ulyanov_api_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
