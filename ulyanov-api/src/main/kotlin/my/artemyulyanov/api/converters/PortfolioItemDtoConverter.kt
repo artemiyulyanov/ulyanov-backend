@@ -11,6 +11,7 @@ class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioIte
             PortfolioItem(
                 id,
                 scope,
+                title,
                 description,
                 text,
                 startDate.toString(),

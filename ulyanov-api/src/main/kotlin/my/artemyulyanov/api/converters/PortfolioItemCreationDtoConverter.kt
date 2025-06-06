@@ -11,6 +11,7 @@ class PortfolioItemCreationDtoConverter : DtoConverter<PortfolioItemEntity, Port
     override suspend fun convertToEntity(dto: PortfolioItemCreation): PortfolioItemEntity =
         PortfolioItemEntity {
             scope = dto.scope
+            title = dto.title
             description = dto.description
             text = dto.text
             startDate = Instant.parse(dto.startDate)
