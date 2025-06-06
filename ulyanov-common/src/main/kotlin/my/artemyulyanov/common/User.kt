@@ -31,7 +31,7 @@ data class UserModification(
     override val firstName: String,
     override val lastName: String,
     override val role: UserRole
-    ): AbstractUser, AbstractUserPassword
+): AbstractUser, AbstractUserPassword
 
 enum class UserRole {
     DEFAULT, ADMINISTRATOR
