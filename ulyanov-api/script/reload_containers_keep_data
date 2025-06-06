@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#
+# Copyright 2024-2025 MX.Store Team
+#
+
+docker-compose -f ./ulyanov-api/docker/docker-compose.yml down
+./gradlew ulyanov-api:publishImageToLocalRegistry
+docker-compose -f ./ulyanov-api/docker/docker-compose.yml up -d

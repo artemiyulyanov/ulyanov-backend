@@ -1,0 +1,43 @@
+services:
+  ulyanov-api-postgres:
+    image: postgres:latest
+    container_name: ulyanov-api-postgres
+    environment:
+      - POSTGRES_DB=ulyanov_api_database
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=postgres_password
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    networks:
+      - ulyanov-api-net
+    expose:
+      - "5432"
+    volumes:
+      - ulyanov-api-db-data-postgres:/var/lib/postgresql/data
+      - ulyanov-api-db-data-postgres-config:/var/lib/postgresql/dataConfig
+
+  ulyanov-api:
+    image: ulyanov-api:latest
+    container_name: ulyanov-api
+#    restart: unless-stopped
+    networks:
+      - ulyanov-api-net
+    expose:
+      - "9374"
+    ports:
+      - "9374:9374"
+    env_file:
+      - "../../config/.env"
+    depends_on:
+      - ulyanov-api-postgres
+
+networks:
+  ulyanov-api-net:
+    driver: bridge
+
+volumes:
+  ulyanov-api-db-data-postgres:
+    driver: local
+
+  ulyanov-api-db-data-postgres-config:
+    driver: local

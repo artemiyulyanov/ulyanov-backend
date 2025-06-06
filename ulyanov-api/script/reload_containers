@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#
+# Copyright 2024-2025 MX.Store Team
+#
+
+docker-compose -f ./ulyanov-api/docker/docker-compose.yml down
+docker volume rm docker_ulyanov-api-db-data-postgres docker_ulyanov-api-db-data-postgres-config
+./gradlew ulyanov-api:publishImageToLocalRegistry
+docker-compose -f ./ulyanov-api/docker/docker-compose.yml up -d
