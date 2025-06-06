@@ -5,6 +5,7 @@ info:
   version: "1.0.0"
   contact:
     name: "Artemy Ulyanov"
+    url: "https://t.me/artemyulyanov"
     email: "artemiyulyanov.career@gmail.com"
 servers:
   - url: "https://api.artemyulyanov.com"
