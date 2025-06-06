@@ -13,7 +13,7 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.named
 
 class GetPortfolioItemByIdRoute : Route, KoinComponent {
-    override val qualifier: Qualifier = named("get-portfolio-item-by-id-route")
+    override val qualifier = named("get-portfolio-item-by-id-route")
 
     private val portfolioItemService by inject<PortfolioItemService>()
 

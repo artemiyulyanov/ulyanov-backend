@@ -14,7 +14,7 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.named
 
 class GetAllPortfolioItemsRoute : Route, KoinComponent {
-    override val qualifier: Qualifier = named("get-all-portfolio-items-route")
+    override val qualifier = named("get-all-portfolio-items-route")
 
     private val portfolioItemService by inject<PortfolioItemService>()
 
