@@ -19,7 +19,7 @@ services:
   ulyanov-api:
     image: ulyanov-api:latest
     container_name: ulyanov-api
-#    restart: unless-stopped
+    restart: unless-stopped
     networks:
       - ulyanov-api-net
     expose:
