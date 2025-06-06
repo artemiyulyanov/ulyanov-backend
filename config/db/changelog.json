@@ -20,7 +20,7 @@
                 },
                 {
                   "column": {
-                    "name": "title",
+                    "name": "scope",
                     "type": "text",
                     "constraints": {
                       "nullable": false
@@ -29,7 +29,7 @@
                 },
                 {
                   "column": {
-                    "name": "scope",
+                    "name": "title",
                     "type": "text",
                     "constraints": {
                       "nullable": false
