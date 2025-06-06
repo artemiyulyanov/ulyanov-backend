@@ -176,7 +176,7 @@ paths:
     get:
       tags:
         - portfolio_items
-      summary: "Get portfolio items by scope"
+      summary: "Get a portfolio item by scope"
       description: "Required role: `NO AUTH`"
       operationId: "getPortfolioItemByScope"
       responses:
