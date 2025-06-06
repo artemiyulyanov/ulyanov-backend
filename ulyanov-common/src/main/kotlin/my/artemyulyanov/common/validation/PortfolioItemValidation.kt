@@ -22,8 +22,8 @@ fun validatePortfolioItem(
             isNotBlank() hint "Description must be filled out"
         }
 
-        AbstractPortfolioItem::scope {
-            isNotBlank() hint "Scope must be filled out"
+        AbstractPortfolioItem::title {
+            isNotBlank() hint "Title must be filled out"
         }
 
         validateDates(startDate, endDate)
