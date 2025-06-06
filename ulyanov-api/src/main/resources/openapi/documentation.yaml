@@ -7,7 +7,7 @@ info:
     name: "Artemy Ulyanov"
     email: "artemiyulyanov.career@gmail.com"
 servers:
-  - url: "https://artemyulyanov.com"
+  - url: "https://api.artemyulyanov.com"
     description: "Production"
   - url: "http://localhost:9374"
     description: "Development environment"
