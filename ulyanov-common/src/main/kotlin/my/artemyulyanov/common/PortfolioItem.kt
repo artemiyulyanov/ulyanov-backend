@@ -3,7 +3,6 @@ package my.artemyulyanov.common
 import kotlinx.serialization.Serializable
 
 interface AbstractPortfolioItem {
-    val scope: Identifier
     val title: String
     val description: String
     val text: String
@@ -12,7 +11,6 @@ interface AbstractPortfolioItem {
 @Serializable
 data class PortfolioItem(
     override val id: Identifier,
-    override val scope: Identifier,
     override val title: String,
     override val description: String,
     override val text: String,
@@ -24,7 +22,6 @@ data class PortfolioItem(
 
 @Serializable
 data class PortfolioItemModification(
-    override val scope: Identifier,
     override val title: String,
     override val description: String,
     override val text: String,

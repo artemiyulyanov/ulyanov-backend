@@ -172,22 +172,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ErrorResponse"
-  /api/portfolio/scope/{scope}:
-    get:
-      tags:
-        - portfolio_items
-      summary: "Get a portfolio item by scope"
-      description: "Required role: `NO AUTH`"
-      operationId: "getPortfolioItemByScope"
-      responses:
-        200:
-          description: "Items are retrieved"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/PortfolioItem"
 components:
   schemas:
     PortfolioItem:
@@ -197,9 +181,9 @@ components:
           type: string
           description: "Identifier"
           example: "000000000"
-        scope:
+        title:
           type: string
-          description: "Scope to what workplace/project this relates"
+          description: "Title of workplace/project"
           example: "My Last Workplace"
         description:
           type: string
@@ -227,7 +211,7 @@ components:
           description: "Timestamp of last update"
       required:
         - id
-        - scope
+        - title
         - description
         - text
         - startDate
@@ -237,9 +221,9 @@ components:
     PortfolioItemModification:
       type: object
       properties:
-        scope:
+        title:
           type: string
-          description: "Scope to what workplace/project this relates"
+          description: "Title of workplace/project"
           example: "My Last Workplace"
         description:
           type: string
@@ -258,7 +242,7 @@ components:
           format: date-time
           description: "Timestamp of ending"
       required:
-        - scope
+        - title
         - description
         - text
         - startDate

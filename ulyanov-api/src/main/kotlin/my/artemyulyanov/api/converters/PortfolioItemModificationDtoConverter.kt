@@ -11,7 +11,7 @@ import java.time.Instant
 class PortfolioItemModificationDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioItemModification>, KoinComponent {
     override suspend fun convertToEntity(dto: PortfolioItemModification): PortfolioItemEntity =
         PortfolioItemEntity {
-            scope = dto.scope
+            title = dto.title
             description = dto.description
             text = dto.text
             startDate = Instant.parse(dto.startDate)

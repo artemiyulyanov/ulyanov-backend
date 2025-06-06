@@ -8,7 +8,6 @@ import java.time.Instant
 
 interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> {
     var id: Identifier
-    var scope: Identifier
     var title: String
     var description: String
     var text: String
@@ -19,4 +18,4 @@ interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> 
 }
 
 val PortfolioItemEntity.asString
-    get() = "PortfolioItemEntity{id = $id, scope = $scope}"
+    get() = "PortfolioItemEntity{id = $id}"

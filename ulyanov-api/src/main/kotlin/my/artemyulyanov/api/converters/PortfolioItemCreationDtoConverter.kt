@@ -10,7 +10,6 @@ import java.time.Instant
 class PortfolioItemCreationDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioItemCreation>, KoinComponent {
     override suspend fun convertToEntity(dto: PortfolioItemCreation): PortfolioItemEntity =
         PortfolioItemEntity {
-            scope = dto.scope
             title = dto.title
             description = dto.description
             text = dto.text

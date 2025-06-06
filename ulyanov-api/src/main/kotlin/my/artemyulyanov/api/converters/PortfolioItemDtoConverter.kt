@@ -10,7 +10,6 @@ class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioIte
         with(entity) {
             PortfolioItem(
                 id,
-                scope,
                 title,
                 description,
                 text,

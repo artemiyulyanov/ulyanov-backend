@@ -10,10 +10,6 @@ object PortfolioItems : ModificationTimestampAwareEntities<PortfolioItemEntity>(
         it.id
     }
 
-    val scope = text("scope").bindTo {
-        it.scope
-    }
-
     val title = text("title").bindTo {
         it.title
     }
