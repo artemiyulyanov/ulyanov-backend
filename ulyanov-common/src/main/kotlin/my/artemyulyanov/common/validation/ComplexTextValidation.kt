@@ -9,11 +9,10 @@ import my.artemyulyanov.common.ComplexTextSegment
 import my.artemyulyanov.common.ComplexTextSegmentType
 import my.artemyulyanov.common.util.Regex
 
-fun ValidationBuilder<ComplexText>.validateComplexText() {
+fun ValidationBuilder<ComplexText>.validateComplexText() =
     onEach {
         validateComplexTextSegment()
     }
-}
 
 private fun ValidationBuilder<ComplexTextSegment>.validateComplexTextSegment() {
     ComplexTextSegment::text {
