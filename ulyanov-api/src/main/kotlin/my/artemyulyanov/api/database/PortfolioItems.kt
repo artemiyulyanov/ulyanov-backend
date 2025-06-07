@@ -2,6 +2,8 @@ package my.artemyulyanov.api.database
 
 import dev.d1s.exkt.ktorm.ModificationTimestampAwareEntities
 import my.artemyulyanov.api.entities.PortfolioItemEntity
+import my.artemyulyanov.common.ComplexText
+import org.ktorm.jackson.json
 import org.ktorm.schema.text
 import org.ktorm.schema.timestamp
 
@@ -18,7 +20,7 @@ object PortfolioItems : ModificationTimestampAwareEntities<PortfolioItemEntity>(
         it.description
     }
 
-    val text = text("text").bindTo {
+    val text = json<ComplexText>("text").bindTo {
         it.text
     }
 

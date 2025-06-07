@@ -39,7 +39,7 @@
                 {
                   "column": {
                     "name": "text",
-                    "type": "text",
+                    "type": "json",
                     "constraints": {
                       "nullable": false
                     }

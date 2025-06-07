@@ -16,7 +16,7 @@ fun validatePortfolioItem(
 ): Validation<AbstractPortfolioItem> =
     Validation {
         AbstractPortfolioItem::text {
-            isNotBlank() hint "Text must be filled out"
+            validateComplexText()
         }
 
         AbstractPortfolioItem::description {

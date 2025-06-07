@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 interface AbstractPortfolioItem {
     val title: String
     val description: String
-    val text: String
+    val text: ComplexText
     val startDate: Timestamp
     val endDate: Timestamp?
 }
@@ -15,7 +15,7 @@ data class PortfolioItem(
     override val id: Identifier,
     override val title: String,
     override val description: String,
-    override val text: String,
+    override val text: ComplexText,
     override val startDate: Timestamp,
     override val endDate: Timestamp? = "Now",
     override val createdAt: Timestamp,
@@ -26,7 +26,7 @@ data class PortfolioItem(
 data class PortfolioItemModification(
     override val title: String,
     override val description: String,
-    override val text: String,
+    override val text: ComplexText,
     override val startDate: Timestamp,
     override val endDate: Timestamp? = "Now"
 ): AbstractPortfolioItem

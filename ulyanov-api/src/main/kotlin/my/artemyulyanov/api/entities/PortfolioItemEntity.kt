@@ -1,6 +1,7 @@
 package my.artemyulyanov.api.entities
 
 import dev.d1s.exkt.ktorm.ModificationTimestampAware
+import my.artemyulyanov.common.ComplexText
 import my.artemyulyanov.common.Identifier
 import my.artemyulyanov.common.Timestamp
 import org.ktorm.entity.Entity
@@ -10,7 +11,7 @@ interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> 
     var id: Identifier
     var title: String
     var description: String
-    var text: String
+    var text: ComplexText
     var startDate: Instant
     var endDate: Instant?
 
