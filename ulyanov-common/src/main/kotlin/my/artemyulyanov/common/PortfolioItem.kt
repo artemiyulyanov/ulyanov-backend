@@ -6,6 +6,8 @@ interface AbstractPortfolioItem {
     val title: String
     val description: String
     val text: String
+    val startDate: Timestamp
+    val endDate: Timestamp?
 }
 
 @Serializable
@@ -14,8 +16,8 @@ data class PortfolioItem(
     override val title: String,
     override val description: String,
     override val text: String,
-    val startDate: Timestamp,
-    val endDate: Timestamp,
+    override val startDate: Timestamp,
+    override val endDate: Timestamp? = "Now",
     override val createdAt: Timestamp,
     override val updatedAt: Timestamp
 ): Identified, AbstractPortfolioItem, TimestampAwareEntity
@@ -25,8 +27,8 @@ data class PortfolioItemModification(
     override val title: String,
     override val description: String,
     override val text: String,
-    val startDate: Timestamp,
-    val endDate: Timestamp
+    override val startDate: Timestamp,
+    override val endDate: Timestamp? = "Now"
 ): AbstractPortfolioItem
 
 typealias PortfolioItemCreation = PortfolioItemModification

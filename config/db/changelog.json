@@ -59,7 +59,7 @@
                     "name": "end_date",
                     "type": "timestamp",
                     "constraints": {
-                      "nullable": false
+                      "nullable": true
                     }
                   }
                 },

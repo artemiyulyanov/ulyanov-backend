@@ -12,7 +12,7 @@ interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> 
     var description: String
     var text: String
     var startDate: Instant
-    var endDate: Instant
+    var endDate: Instant?
 
     companion object : Entity.Factory<PortfolioItemEntity>()
 }
