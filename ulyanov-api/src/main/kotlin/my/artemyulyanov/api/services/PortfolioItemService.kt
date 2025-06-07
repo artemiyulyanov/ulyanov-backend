@@ -81,6 +81,7 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
             requireNotNull(originalPortfolioItemDto)
 
             originalPortfolioItem.apply {
+                title = item.title
                 description = item.description
                 text = item.text
                 startDate = item.startDate
