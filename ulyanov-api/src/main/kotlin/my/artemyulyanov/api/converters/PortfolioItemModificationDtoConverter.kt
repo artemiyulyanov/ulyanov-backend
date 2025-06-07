@@ -15,6 +15,6 @@ class PortfolioItemModificationDtoConverter : DtoConverter<PortfolioItemEntity, 
             description = dto.description
             text = dto.text
             startDate = Instant.parse(dto.startDate)
-            endDate = Instant.parse(dto.endDate)
+            endDate = dto.endDate?.let { Instant.parse(it) }
         }
 }

@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException
 
 fun validatePortfolioItem(
     startDate: Timestamp,
-    endDate: Timestamp
+    endDate: Timestamp?
 ): Validation<AbstractPortfolioItem> =
     Validation {
         AbstractPortfolioItem::text {
@@ -31,12 +31,12 @@ fun validatePortfolioItem(
 
 private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
     startDate: Timestamp,
-    endDate: Timestamp
+    endDate: Timestamp?
 ) {
     val now = Instant.now()
 
     val parsedStart = tryParseInstant(startDate)
-    val parsedEnd = tryParseInstant(endDate)
+    val parsedEnd = endDate?.let { tryParseInstant(it) }
 
     run {
         if (parsedStart == null) {
@@ -49,9 +49,7 @@ private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
     }
 
     run {
-        if (parsedEnd == null) {
-            addConstraint("End date has invalid format") { false }
-        } else {
+        if (parsedEnd != null) {
             addConstraint("End date must not be in the past") {
                 !parsedEnd.isBefore(now)
             }
