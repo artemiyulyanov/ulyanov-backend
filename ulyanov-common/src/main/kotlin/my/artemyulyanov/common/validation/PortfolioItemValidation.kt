@@ -6,6 +6,7 @@ import io.konform.validation.ValidationBuilder
 import my.artemyulyanov.common.AbstractPortfolioItem
 import my.artemyulyanov.common.PortfolioItem
 import my.artemyulyanov.common.Timestamp
+import my.artemyulyanov.common.util.tryParseInstant
 import java.time.Instant
 import java.time.format.DateTimeParseException
 
@@ -35,8 +36,8 @@ private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
 ) {
     val now = Instant.now()
 
-    val parsedStart = tryParseInstant(startDate)
-    val parsedEnd = endDate?.let { tryParseInstant(it) }
+    val parsedStart = startDate.tryParseInstant()
+    val parsedEnd = endDate.tryParseInstant()
 
     run {
         if (parsedStart == null) {
@@ -64,10 +65,3 @@ private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
         }
     }
 }
-
-private fun tryParseInstant(value: String): Instant? =
-    try {
-        Instant.parse(value)
-    } catch (e: DateTimeParseException) {
-        null
-    }
