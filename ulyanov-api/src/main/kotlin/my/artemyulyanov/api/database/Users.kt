@@ -5,7 +5,7 @@ import my.artemyulyanov.api.entities.UserEntity
 import org.ktorm.schema.text
 
 object Users : ModificationTimestampAwareEntities<UserEntity>(tableName = "users") {
-    val id = text("id").bindTo {
+    val id = text("id").primaryKey().bindTo {
         it.id
     }
 
