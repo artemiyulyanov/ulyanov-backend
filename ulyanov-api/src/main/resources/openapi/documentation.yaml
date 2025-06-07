@@ -148,7 +148,6 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       security:
         - ulyanov_api_auth: [ ]
-  /api/portfolio/id/{id}:
     get:
       tags:
         - portfolio_items

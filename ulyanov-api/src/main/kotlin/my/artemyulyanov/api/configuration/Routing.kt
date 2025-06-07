@@ -10,7 +10,7 @@ import org.koin.core.module.Module
 object Routing : ApplicationConfigurer {
     override fun Application.configure(module: Module, config: ApplicationConfig) {
         module.configureRoutes {
-            +GetPortfolioItemByIdRoute()
+            +GetPortfolioItemRoute()
             +GetAllPortfolioItemsRoute()
 
             +PostPortfolioItemRoute()

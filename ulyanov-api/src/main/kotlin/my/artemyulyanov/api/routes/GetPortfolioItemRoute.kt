@@ -9,16 +9,15 @@ import my.artemyulyanov.api.util.Paths
 import my.artemyulyanov.api.util.requiredIdParameter
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.named
 
-class GetPortfolioItemByIdRoute : Route, KoinComponent {
-    override val qualifier = named("get-portfolio-item-by-id-route")
+class GetPortfolioItemRoute : Route, KoinComponent {
+    override val qualifier = named("get-portfolio-item-route")
 
     private val portfolioItemService by inject<PortfolioItemService>()
 
     override fun Routing.apply() {
-        get(Paths.GET_PORTFOLIO_ITEM_BY_ID) {
+        get(Paths.GET_PORTFOLIO_ITEM) {
             val id = call.requiredIdParameter
 
             val item = portfolioItemService.getById(id, requireDto = true).getOrThrow().requiredDto
