@@ -13,6 +13,7 @@ interface AbstractPortfolioItem {
 @Serializable
 data class PortfolioItem(
     override val id: Identifier,
+    val slug: Identifier,
     override val title: String,
     override val description: String,
     override val text: ComplexText,

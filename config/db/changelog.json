@@ -20,6 +20,15 @@
                 },
                 {
                   "column": {
+                    "name": "slug",
+                    "type": "text",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
                     "name": "title",
                     "type": "text",
                     "constraints": {
@@ -85,6 +94,13 @@
               "tableName": "portfolio_items",
               "columnNames": "id",
               "constraintName": "pk_portfolio_items"
+            }
+          },
+          {
+            "addUniqueConstraint": {
+              "tableName": "portfolio_items",
+              "columnNames": "id,slug",
+              "constraintName": "uk_portfolio_items_id_slug"
             }
           }
         ]

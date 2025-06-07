@@ -12,6 +12,10 @@ object PortfolioItems : ModificationTimestampAwareEntities<PortfolioItemEntity>(
         it.id
     }
 
+    val slug = text("slug").bindTo {
+        it.slug
+    }
+
     val title = text("title").bindTo {
         it.title
     }

@@ -2,6 +2,7 @@ package my.artemyulyanov.api.converters
 
 import dev.d1s.exkt.dto.DtoConverter
 import my.artemyulyanov.api.entities.PortfolioItemEntity
+import my.artemyulyanov.api.util.convertToSlug
 import my.artemyulyanov.common.PortfolioItem
 import my.artemyulyanov.common.util.parseTimestamp
 import org.koin.core.component.KoinComponent
@@ -11,6 +12,7 @@ class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioIte
         with(entity) {
             PortfolioItem(
                 id,
+                title.convertToSlug(),
                 title,
                 description,
                 text,
