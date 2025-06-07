@@ -43,16 +43,16 @@ private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
         if (parsedStart == null) {
             addConstraint("Start date has invalid format") { false }
         } else {
-            addConstraint("Start date must not be in the past") {
-                !parsedStart.isBefore(now)
+            addConstraint("Start date must not be in the future") {
+                !parsedStart.isAfter(now)
             }
         }
     }
 
     run {
         if (parsedEnd != null) {
-            addConstraint("End date must not be in the past") {
-                !parsedEnd.isBefore(now)
+            addConstraint("End date must not be in the future") {
+                !parsedEnd.isAfter(now)
             }
         }
     }
