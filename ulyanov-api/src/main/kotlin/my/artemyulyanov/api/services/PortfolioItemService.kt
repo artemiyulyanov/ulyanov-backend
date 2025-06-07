@@ -14,7 +14,7 @@ import org.lighthousegames.logging.logging
 
 interface PortfolioItemService {
     suspend fun getAll(requireDto: Boolean = false): ResultingEntityWithOptionalDtoList<PortfolioItemEntity, PortfolioItem>
-    suspend fun getById(id: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
+    suspend fun getPortfolioItem(constraint: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
 
     suspend fun createPortfolioItem(item: PortfolioItemEntity, requireDto: Boolean = false): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem>
 
@@ -40,10 +40,12 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
             }
         }
 
-    override suspend fun getById(id: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem> =
+    override suspend fun getPortfolioItem(constraint: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDto<PortfolioItemEntity, PortfolioItem> =
         runCatching {
-            val item = portfolioItemRepository.findById(id).getOrElse {
-                throw NotFoundException("Item is not found!")
+            val item = portfolioItemRepository.findById(constraint).getOrElse {
+                portfolioItemRepository.findBySlug(constraint).getOrElse {
+                    throw NotFoundException("Item is not found!")
+                }
             }
 
             item to portfolioItemDtoConverter.convertToDtoIf(item) {
@@ -77,7 +79,7 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
                 "Updating portfolio item ${item.asString}..."
             }
 
-            val (originalPortfolioItem, originalPortfolioItemDto) = getById(id, requireDto = true).getOrThrow()
+            val (originalPortfolioItem, originalPortfolioItemDto) = getPortfolioItem(id, requireDto = true).getOrThrow()
             requireNotNull(originalPortfolioItemDto)
 
             originalPortfolioItem.apply {
@@ -102,7 +104,7 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
                 "Deleting portfolio item #$id..."
             }
 
-            val (originalPortfolioItem, originalPortfolioItemDto) = getById(id, requireDto = true).getOrElse() {
+            val (originalPortfolioItem, originalPortfolioItemDto) = getPortfolioItem(id, requireDto = true).getOrElse() {
                 throw NotFoundException("Item is not found!")
             }
 

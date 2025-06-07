@@ -18,7 +18,7 @@ import org.koin.core.component.inject
 import org.lighthousegames.logging.logging
 
 interface UserService {
-    suspend fun getUser(id: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<UserEntity, User>
+    suspend fun getUser(constraint: Identifier, requireDto: Boolean = false): ResultingEntityWithOptionalDto<UserEntity, User>
 
     suspend fun updateUser(id: Identifier, user: UserEntity, requireDto: Boolean = false): ResultingEntityWithOptionalDto<UserEntity, User>
     suspend fun deleteUser(id: Identifier): Result<Unit>
@@ -33,10 +33,10 @@ class DefaultUserService : UserService, KoinComponent {
 
     private val log = logging()
 
-    override suspend fun getUser(id: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDto<UserEntity, User> =
+    override suspend fun getUser(constraint: Identifier, requireDto: Boolean): ResultingEntityWithOptionalDto<UserEntity, User> =
         runCatching {
-            val user = userRepository.findById(id).getOrElse {
-                userRepository.findByUsername(id).getOrElse {
+            val user = userRepository.findById(constraint).getOrElse {
+                userRepository.findByUsername(constraint).getOrElse {
                     throw NotFoundException("User is not found!")
                 }
             }

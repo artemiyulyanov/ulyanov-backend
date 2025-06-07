@@ -20,7 +20,7 @@ class GetPortfolioItemRoute : Route, KoinComponent {
         get(Paths.GET_PORTFOLIO_ITEM) {
             val id = call.requiredIdParameter
 
-            val item = portfolioItemService.getById(id, requireDto = true).getOrThrow().requiredDto
+            val item = portfolioItemService.getPortfolioItem(id, requireDto = true).getOrThrow().requiredDto
 
             call.respond(item)
         }
