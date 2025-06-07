@@ -3,6 +3,7 @@ package my.artemyulyanov.api.converters
 import dev.d1s.exkt.dto.DtoConverter
 import my.artemyulyanov.api.entities.PortfolioItemEntity
 import my.artemyulyanov.common.PortfolioItem
+import my.artemyulyanov.common.util.parseTimestamp
 import org.koin.core.component.KoinComponent
 
 class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioItem>, KoinComponent {
@@ -13,8 +14,8 @@ class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioIte
                 title,
                 description,
                 text,
-                startDate.toString(),
-                endDate.toString(),
+                startDate.parseTimestamp(),
+                endDate.parseTimestamp(),
                 createdAt.toString(),
                 updatedAt.toString()
             )

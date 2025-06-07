@@ -12,3 +12,6 @@ fun Timestamp?.tryParseInstant(): Instant? =
             null
         }
     }
+
+fun Instant?.parseTimestamp(): Timestamp =
+    this?.toString() ?: "Now"
