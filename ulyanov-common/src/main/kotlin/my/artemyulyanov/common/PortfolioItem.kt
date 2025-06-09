@@ -6,6 +6,7 @@ interface AbstractPortfolioItem {
     val title: String
     val description: String
     val text: ComplexText
+    val icon: String?
     val startDate: Timestamp
     val endDate: Timestamp?
 }
@@ -17,6 +18,7 @@ data class PortfolioItem(
     override val title: String,
     override val description: String,
     override val text: ComplexText,
+    override val icon: String?,
     override val startDate: Timestamp,
     override val endDate: Timestamp? = "Now",
     override val createdAt: Timestamp,
@@ -28,6 +30,7 @@ data class PortfolioItemModification(
     override val title: String,
     override val description: String,
     override val text: ComplexText,
+    override val icon: String?,
     override val startDate: Timestamp,
     override val endDate: Timestamp? = "Now"
 ): AbstractPortfolioItem

@@ -13,6 +13,7 @@ interface PortfolioItemEntity : ModificationTimestampAware<PortfolioItemEntity> 
     var title: String
     var description: String
     var text: ComplexText
+    var icon: String?
     var startDate: Instant
     var endDate: Instant?
 

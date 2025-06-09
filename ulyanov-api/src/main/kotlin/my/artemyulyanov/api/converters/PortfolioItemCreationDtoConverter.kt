@@ -16,6 +16,7 @@ class PortfolioItemCreationDtoConverter : DtoConverter<PortfolioItemEntity, Port
             title = dto.title
             description = dto.description
             text = dto.text
+            icon = dto.icon
             startDate = dto.startDate.tryParseInstant() ?: error("Unable to parse portfolio item!")
             endDate = dto.endDate.tryParseInstant()
         }

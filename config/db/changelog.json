@@ -56,6 +56,15 @@
                 },
                 {
                   "column": {
+                    "name": "icon",
+                    "type": "text",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
                     "name": "start_date",
                     "type": "timestamp",
                     "constraints": {

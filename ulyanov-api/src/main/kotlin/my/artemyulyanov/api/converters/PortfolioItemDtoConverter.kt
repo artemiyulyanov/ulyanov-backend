@@ -16,6 +16,7 @@ class PortfolioItemDtoConverter : DtoConverter<PortfolioItemEntity, PortfolioIte
                 title,
                 description,
                 text,
+                icon,
                 startDate.parseTimestamp(),
                 endDate.parseTimestamp(),
                 createdAt.toString(),

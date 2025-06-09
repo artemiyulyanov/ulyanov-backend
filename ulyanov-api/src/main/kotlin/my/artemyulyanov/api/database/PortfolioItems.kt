@@ -28,6 +28,10 @@ object PortfolioItems : ModificationTimestampAwareEntities<PortfolioItemEntity>(
         it.text
     }
 
+    val icon = text("icon").bindTo {
+        it.icon
+    }
+
     val startDate = timestamp("start_date").bindTo {
         it.startDate
     }
