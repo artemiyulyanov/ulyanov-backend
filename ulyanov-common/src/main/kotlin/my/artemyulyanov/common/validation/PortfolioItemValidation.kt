@@ -6,6 +6,7 @@ import io.konform.validation.ValidationBuilder
 import my.artemyulyanov.common.AbstractPortfolioItem
 import my.artemyulyanov.common.PortfolioItem
 import my.artemyulyanov.common.Timestamp
+import my.artemyulyanov.common.util.Regex
 import my.artemyulyanov.common.util.tryParseInstant
 import java.time.Instant
 import java.time.format.DateTimeParseException
@@ -27,7 +28,15 @@ fun validatePortfolioItem(
             isNotBlank() hint "Title must be filled out"
         }
 
+        validateIcon()
         validateDates(startDate, endDate)
+    }
+
+private fun ValidationBuilder<AbstractPortfolioItem>.validateIcon() =
+    run {
+        addConstraint("Minio link is invalid!") {
+            it.icon?.matches(Regex.ServerS3Link) ?: true
+        }
     }
 
 private fun ValidationBuilder<AbstractPortfolioItem>.validateDates(
