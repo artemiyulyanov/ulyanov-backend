@@ -87,6 +87,7 @@ class DefaultPortfolioItemService : PortfolioItemService, KoinComponent {
                 title = item.title
                 description = item.description
                 text = item.text
+                icon = item.icon
                 startDate = item.startDate
                 endDate = item.endDate
             }
